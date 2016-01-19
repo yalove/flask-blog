@@ -31,7 +31,9 @@ RUN chmod 755 /*.sh
 
 ENV MYSQL_USER=admin \
     MYSQL_PASS=**Random** \
-    ON_CREATE_DB=**False** \
+    MYSQL_HOST=localhost \
+    MYSQL_PORT=3306 \
+    MYSQL_DB=yalove \
     REPLICATION_MASTER=**False** \
     REPLICATION_SLAVE=**False** \
     REPLICATION_USER=replica \

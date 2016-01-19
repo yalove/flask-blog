@@ -53,11 +53,11 @@ CreateMySQLUser()
 
 OnCreateDB()
 {
-    if [ "$ON_CREATE_DB" = "**False**" ]; then
-        unset ON_CREATE_DB
+    if [ "$MYSQL_DB" = "**False**" ]; then
+        unset MYSQL_DB
     else
-        echo "Creating MySQL database ${ON_CREATE_DB}"
-        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${ON_CREATE_DB};"
+        echo "Creating MySQL database ${MYSQL_DB}"
+        mysql -uroot -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DB};"
         echo "Database created!"
     fi
 }
@@ -66,8 +66,8 @@ ImportSql()
 {
     for FILE in ${STARTUP_SQL}; do
 	    echo "=> Importing SQL file ${FILE}"
-        if [ "$ON_CREATE_DB" ]; then
-            mysql -uroot "$ON_CREATE_DB" < "${FILE}"
+        if [ "$MYSQL_DB" ]; then
+            mysql -uroot "$MYSQL_DB" < "${FILE}"
         else
             mysql -uroot < "${FILE}"
         fi

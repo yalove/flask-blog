@@ -18,5 +18,7 @@ def create_app(config_name='default', main_instance=None, **settings):
 def create_celery_app(app=None):
 	pass
 
-web=create_app()
-
+web=create_app(config_name='produce')
+@web.route('/')
+def function():
+	return 'hello'

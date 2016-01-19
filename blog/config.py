@@ -26,11 +26,19 @@ class Testing(Config):
 		
 
 class ProductionConfig(Config):
-	pass
+	MYSQL_USER = os.getenv('MYSQL_USER')
+	MYSQL_PASS = os.getenv('MYSQL_PASS')
+	MYSQL_HOST = os.getenv('MYSQL_HOST')
+	MYSQL_PORT = os.getenv('MYSQL_PORT')
+	MYSQL_DB = os.getenv('MYSQL_DB')
+	SQLALCHEMY_DATABASE_URI = 'mysql://%s:%s@%s:%s/%s' % (
+        MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, MYSQL_DB
+    )
 
 
 
 config = {
-	'default' : Testing
+	'default' : Testing,
+	'produce' : ProductionConfig,
 }
 		
