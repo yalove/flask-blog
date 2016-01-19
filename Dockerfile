@@ -3,11 +3,6 @@ FROM ubuntu:trusty
 RUN apt-get update
 RUN apt-get install -y python python-pip python-virtualenv nginx gunicorn supervisor
 
-# Setup flask application
-RUN mkdir -p /www
-COPY blog /www
-RUN pip install -r /www/requirements.txt
-
 # Setup nginx
 RUN rm /etc/nginx/sites-enabled/default
 COPY app.conf /etc/nginx/sites-available/
@@ -46,6 +41,12 @@ COPY gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # Add volumes for MySQL 
 VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
+
+# Setup flask application
+RUN mkdir -p /www
+COPY blog /www
+RUN pip install -r /www/requirements.txt
+
 
 # Start processes
 CMD ["/run.sh"]
