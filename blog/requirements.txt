@@ -26,3 +26,4 @@ SQLAlchemy-Utils==0.30.11
 wheel==0.24.0
 
 WTForms==2.0.2
+MySQL-python
