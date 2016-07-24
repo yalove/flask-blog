@@ -27,3 +27,5 @@ wheel==0.24.0
 
 WTForms==2.0.2
 MySQL-python
+wechat_sdk
+redis
